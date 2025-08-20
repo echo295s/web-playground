@@ -21,3 +21,6 @@ ChatGPTとGitHubを連携する。
 - bcrypt
 - JSON Web Token
 - Axios
+
+#### テストアカウント
+- testUser1:password
