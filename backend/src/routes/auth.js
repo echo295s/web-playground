@@ -1,11 +1,37 @@
 const express = require('express')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
-const sqlite3 = require('sqlite3').verbose()
+const db = require('../db')
 
 const router = express.Router()
 const SECRET_KEY = 'your-secret-key'
-const db = new sqlite3.Database('./data.db')
+
+router.post('/register', (req, res) => {
+  const { username, password } = req.body
+
+  if (!username || !password) {
+    return res.status(400).json({ error: 'ユーザー名とパスワードは必須です' })
+  }
+
+  bcrypt.hash(password, 10, (err, hash) => {
+    if (err) return res.status(500).json({ error: 'ハッシュ化エラー' })
+
+    db.run(
+      'INSERT INTO users (username, password_hash) VALUES (?, ?)',
+      [username, hash],
+      function (err) {
+        if (err) {
+          if (err.message && err.message.includes('UNIQUE')) {
+            return res.status(409).json({ error: 'ユーザー名は既に使用されています' })
+          }
+          return res.status(500).json({ error: 'DBエラー' })
+        }
+
+        res.status(201).json({ message: 'ユーザー登録が完了しました' })
+      }
+    )
+  })
+})
 
 router.post('/login', (req, res) => {
   const { username, password } = req.body
