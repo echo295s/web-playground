@@ -1,0 +1,17 @@
+{
+  "name": "mynodesandbox",
+  "version": "1.0.0",
+  "description": "開発ディレクトリ\r `C:\\dev\\MyNodeSandbox`",
+  "main": "index.js",
+  "scripts": {
+    "start:frontend": "cd frontend && npm run dev",
+    "start:backend": "cd backend && npm start",
+    "start:all": "concurrently \"npm run start:backend\" \"npm run start:frontend\""
+  },
+  "devDependencies": {
+    "concurrently": "^7.6.0"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
