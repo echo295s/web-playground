@@ -1,13 +1,13 @@
-##### 開発ディレクトリ
+#### 開発ディレクトリ
 `C:\dev\web-playground`
 
-##### リポジトリ
+#### リポジトリ
 `https://github.com/echo295s/web-playground.git`
 
-##### 起動コマンド
+#### 起動コマンド
 `npm run start:all`
 
-##### ポート
+#### ポート
 * Vue: [http://localhost:5173](http://localhost:5173)
 * Express: [http://localhost:4000](http://localhost:4000)
 
