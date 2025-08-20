@@ -2,7 +2,7 @@
 `C:\dev\MyNodeSandbox`
 
 ##### リポジトリ
-`https://github.com/echo295s/MyNodeSandbox`
+`https://github.com/echo295s/web-playground.git`
 
 連携したのでPushすればリモートに反映される。
 
