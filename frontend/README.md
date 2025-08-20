@@ -1,5 +1,20 @@
-# Vue 3 + Vite
+# フロントエンド
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+Vue 3 と Vite で構築したシンプルなフロントエンドです。
 
-Learn more about IDE Support for Vue in the [Vue Docs Scaling up Guide](https://vuejs.org/guide/scaling-up/tooling.html#ide-support).
+## セットアップ
+
+```bash
+npm install
+npm run dev
+```
+
+ブラウザで <http://localhost:5173> を開くとアプリが表示されます。
+
+## ビルド
+
+```bash
+npm run build
+```
+
+`dist` ディレクトリに成果物が生成されます。
