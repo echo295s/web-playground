@@ -9,4 +9,3 @@ import Login from './components/Login.vue'
 
 const isLoggedIn = true
 </script>
-
