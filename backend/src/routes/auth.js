@@ -4,7 +4,6 @@ const bcrypt = require('bcrypt')
 const db = require('../db')
 
 const router = express.Router()
-const SECRET_KEY = 'your-secret-key'
 
 router.post('/register', (req, res) => {
   const { username, password } = req.body
@@ -44,7 +43,9 @@ router.post('/login', (req, res) => {
       if (err) return res.status(500).json({ error: '認証エラー' })
       if (!result) return res.status(401).json({ error: 'パスワードが違います' })
 
-      const token = jwt.sign({ id: user.id, username: user.username }, SECRET_KEY, { expiresIn: '1h' })
+      const token = jwt.sign({ id: user.id, username: user.username }, process.env.JWT_SECRET, {
+        expiresIn: '1h'
+      })
       res.json({ token })
     })
   })
