@@ -22,5 +22,7 @@ ChatGPTとGitHubを連携する。
 - JSON Web Token
 - Axios
 
+学習用のためセキュリティ上、本来は含めるべきでないファイル、情報が含まれている。
+
 #### テストアカウント
 - testUser1:password
