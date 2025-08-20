@@ -55,6 +55,7 @@ export default {
     }
   },
   mounted() {
+    this.username = localStorage.getItem('username') || ''
     this.fetchMessages()
   }
 }

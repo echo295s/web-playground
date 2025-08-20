@@ -1,12 +1,13 @@
 <template>
-  <div class="login-container">
-    <h2>ログイン</h2>
-    <form @submit.prevent="login">
+  <div class="register-container">
+    <h2>ユーザー登録</h2>
+    <form @submit.prevent="register">
       <input v-model="username" placeholder="ユーザー名" />
       <input v-model="password" type="password" placeholder="パスワード" />
-      <button type="submit">ログイン</button>
+      <button type="submit">登録</button>
     </form>
-    <p class="link" @click="$emit('go-register')">新規登録はこちら</p>
+    <p class="link" @click="$emit('go-login')">ログインへ戻る</p>
+    <p v-if="message" class="message">{{ message }}</p>
     <p v-if="error" class="error">{{ error }}</p>
   </div>
 </template>
@@ -16,27 +17,27 @@ import axios from 'axios'
 import { apiURL } from '../config.js'
 
 export default {
-  name: 'Login',
+  name: 'Register',
   data() {
     return {
       username: '',
       password: '',
+      message: '',
       error: ''
     }
   },
   methods: {
-    async login() {
+    async register() {
       this.error = ''
+      this.message = ''
       try {
-        const res = await axios.post(`${apiURL}/auth/login`, {
+        await axios.post(`${apiURL}/auth/register`, {
           username: this.username,
           password: this.password
         })
-        localStorage.setItem('token', res.data.token)
-        localStorage.setItem('username', this.username)
-        this.$emit('login-success')
+        this.message = '登録が完了しました'
       } catch (err) {
-        this.error = err.response?.data?.error || 'ログインに失敗しました'
+        this.error = err.response?.data?.error || '登録に失敗しました'
       }
     }
   }
@@ -44,28 +45,32 @@ export default {
 </script>
 
 <style scoped>
-.login-container {
+.register-container {
   max-width: 300px;
   margin: 2rem auto;
   text-align: center;
 }
-.login-container input {
+.register-container input {
   display: block;
   width: 100%;
   margin-bottom: 0.5rem;
   padding: 0.5rem;
 }
-.login-container button {
+.register-container button {
   padding: 0.5rem 1rem;
   background-color: #42b983;
   border: none;
   color: #fff;
   cursor: pointer;
 }
-.login-container .link {
+.register-container .link {
   margin-top: 1rem;
   color: #42b983;
   cursor: pointer;
+}
+.message {
+  color: #333;
+  margin-top: 1rem;
 }
 .error {
   color: red;
