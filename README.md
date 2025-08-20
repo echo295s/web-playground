@@ -1,10 +1,8 @@
 ##### 開発ディレクトリ
-`C:\dev\MyNodeSandbox`
+`C:\dev\web-playground`
 
 ##### リポジトリ
 `https://github.com/echo295s/web-playground.git`
-
-連携したのでPushすればリモートに反映される。
 
 ##### 起動コマンド
 `npm run start:all`
