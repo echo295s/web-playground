@@ -24,6 +24,21 @@ db.serialize(() => {
       console.log('messages テーブルが準備できました。')
     }
   })
+
+  db.run(`
+    CREATE TABLE IF NOT EXISTS users (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      username TEXT UNIQUE NOT NULL,
+      password_hash TEXT NOT NULL,
+      created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    )
+  `, (err) => {
+    if (err) {
+      console.error('テーブル作成エラー:', err.message)
+    } else {
+      console.log('users テーブルが準備できました。')
+    }
+  })
 })
 
 module.exports = db
