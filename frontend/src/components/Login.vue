@@ -54,6 +54,9 @@ export default {
   width: 100%;
   margin-bottom: 0.5rem;
   padding: 0.5rem;
+  background-color: #2c2c2c;
+  border: 1px solid #555;
+  color: #e0e0e0;
 }
 .login-container button {
   padding: 0.5rem 1rem;
