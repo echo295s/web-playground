@@ -26,17 +26,17 @@ export default {
   },
   methods: {
     async login() {
-      this.error = ''
+      this.error = '';
       try {
         const res = await axios.post(`${apiURL}/auth/login`, {
           username: this.username,
           password: this.password
-        })
-        localStorage.setItem('token', res.data.token)
-        localStorage.setItem('username', this.username)
-        this.$emit('login-success')
+        });
+        localStorage.setItem('token', res.data.token);
+        localStorage.setItem('username', this.username);
+        this.$emit('login-success');
       } catch (err) {
-        this.error = err.response?.data?.error || 'ログインに失敗しました'
+        this.error = err.response?.data?.error || 'ログインに失敗しました';
       }
     }
   }

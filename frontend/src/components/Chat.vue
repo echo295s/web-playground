@@ -32,31 +32,32 @@ export default {
       username: ''
     }
   },
+  mounted() {
+    this.username = localStorage.getItem('username') || '';
+    this.fetchMessages();
+  },
   methods: {
     async sendMessage() {
-      if (!this.newMessage) return
+      if (!this.newMessage) return;
+
       try {
         await axios.post(`${this.apiURL}/message`, {
           content: this.newMessage
-        })
-        this.newMessage = ''
-        await this.fetchMessages()
+        });
+        this.newMessage = '';
+        await this.fetchMessages();
       } catch (error) {
-        console.error('送信失敗', error)
+        console.error('送信失敗', error);
       }
     },
     async fetchMessages() {
       try {
-        const res = await axios.get(`${this.apiURL}/messages`)
-        this.messages = res.data.messages
+        const res = await axios.get(`${this.apiURL}/messages`);
+        this.messages = res.data.messages;
       } catch (error) {
-        console.error('取得失敗', error)
+        console.error('取得失敗', error);
       }
     }
-  },
-  mounted() {
-    this.username = localStorage.getItem('username') || ''
-    this.fetchMessages()
   }
 }
 </script>

@@ -27,13 +27,13 @@ export default {
   },
   methods: {
     handleLoginSuccess() {
-      this.isLoggedIn = true
+      this.isLoggedIn = true;
     },
     handleGoRegister() {
-      this.isRegisterMode = true
+      this.isRegisterMode = true;
     },
     handleGoLogin() {
-      this.isRegisterMode = false
+      this.isRegisterMode = false;
     },
   },
 }

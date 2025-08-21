@@ -28,16 +28,16 @@ export default {
   },
   methods: {
     async register() {
-      this.error = ''
-      this.message = ''
+      this.error = '';
+      this.message = '';
       try {
         await axios.post(`${apiURL}/auth/register`, {
           username: this.username,
           password: this.password
-        })
-        this.message = '登録が完了しました'
+        });
+        this.message = '登録が完了しました';
       } catch (err) {
-        this.error = err.response?.data?.error || '登録に失敗しました'
+        this.error = err.response?.data?.error || '登録に失敗しました';
       }
     }
   }
