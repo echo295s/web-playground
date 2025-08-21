@@ -1,15 +1,19 @@
 <template>
-  <div class="register-container">
-    <h2>ユーザー登録</h2>
-    <form @submit.prevent="register">
-      <input v-model="username" placeholder="ユーザー名" />
-      <input v-model="password" type="password" placeholder="パスワード" />
-      <button type="submit">登録</button>
-    </form>
-    <p class="link" @click="$emit('go-login')">ログインへ戻る</p>
-    <p v-if="message" class="message">{{ message }}</p>
-    <p v-if="error" class="error">{{ error }}</p>
-  </div>
+  <v-card class="mx-auto my-12" max-width="400">
+    <v-card-title>ユーザー登録</v-card-title>
+    <v-card-text>
+      <v-form @submit.prevent="register">
+        <v-text-field v-model="username" label="ユーザー名" />
+        <v-text-field v-model="password" label="パスワード" type="password" />
+        <v-btn type="submit" color="primary" class="mt-4">登録</v-btn>
+      </v-form>
+      <v-alert v-if="message" type="success" class="mt-4">{{ message }}</v-alert>
+      <v-alert v-if="error" type="error" class="mt-4">{{ error }}</v-alert>
+      <v-btn variant="text" class="mt-2" @click="$emit('go-login')">
+        ログインへ戻る
+      </v-btn>
+    </v-card-text>
+  </v-card>
 </template>
 
 <script>
@@ -44,40 +48,4 @@ export default {
 }
 </script>
 
-<style scoped>
-.register-container {
-  max-width: 300px;
-  margin: 2rem auto;
-  text-align: center;
-}
-.register-container input {
-  display: block;
-  width: 100%;
-  margin-bottom: 0.5rem;
-  padding: 0.5rem;
-  background-color: #2c2c2c;
-  border: 1px solid #555;
-  color: #e0e0e0;
-}
-.register-container button {
-  padding: 0.5rem 1rem;
-  background-color: #42b983;
-  border: none;
-  color: #fff;
-  cursor: pointer;
-}
-.register-container .link {
-  margin-top: 1rem;
-  color: #42b983;
-  cursor: pointer;
-}
-.message {
-  color: #ccc;
-  margin-top: 1rem;
-}
-.error {
-  color: red;
-  margin-top: 1rem;
-}
-</style>
 
