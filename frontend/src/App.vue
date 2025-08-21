@@ -1,11 +1,16 @@
 <template>
-  <Chat v-if="isLoggedIn" />
-  <Login
-    v-else-if="!isRegisterMode"
-    @login-success="handleLoginSuccess"
-    @go-register="handleGoRegister"
-  />
-  <Register v-else @go-login="handleGoLogin" />
+  <div>
+    <div v-if="isLoggedIn">
+      <button @click="logout">ログアウト</button>
+      <Chat />
+    </div>
+    <Login
+      v-else-if="!isRegisterMode"
+      @login-success="handleLoginSuccess"
+      @go-register="handleGoRegister"
+    />
+    <Register v-else @go-login="handleGoLogin" />
+  </div>
 </template>
 
 <script>
@@ -33,6 +38,12 @@ export default {
       this.isRegisterMode = true;
     },
     handleGoLogin() {
+      this.isRegisterMode = false;
+    },
+    logout() {
+      localStorage.removeItem('token');
+      localStorage.removeItem('username');
+      this.isLoggedIn = false;
       this.isRegisterMode = false;
     },
   },
