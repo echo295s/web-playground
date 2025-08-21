@@ -26,3 +26,4 @@ ChatGPTとGitHubを連携する。
 
 #### テストアカウント
 - testUser1:password
+- testUser2:1234
