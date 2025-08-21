@@ -14,6 +14,19 @@ app.use(bodyParser.json());
 app.use('/api', messageRoutes);
 app.use('/api/auth', authRoutes);
 
+// 未定義ルートのハンドリング
+app.use((req, res, next) => {
+  res.status(404).json({ error: 'リソースが見つかりません。' });
+});
+
+// エラーハンドリングミドルウェア
+app.use((err, req, res, next) => {
+  console.error(err);
+  const status = err.status || 500;
+  const message = err.status ? err.message : 'サーバー内部でエラーが発生しました。';
+  res.status(status).json({ error: message });
+});
+
 app.listen(port, () => {
   console.log(`サーバーが起動しました。: http://localhost:${port}`)
 });
