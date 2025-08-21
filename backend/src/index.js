@@ -11,8 +11,8 @@ const port = 4000;
 
 app.use(cors());
 app.use(bodyParser.json());
-app.use('/api', messageRoutes);
 app.use('/api/auth', authRoutes);
+app.use('/api', messageRoutes);
 
 // 未定義ルートのハンドリング
 app.use((req, res, next) => {
