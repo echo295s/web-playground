@@ -13,7 +13,7 @@
 
 #### 要件
 ChatGPTとGitHubを連携する。
-下記を使う。
+
 - Vue.js
 - Node.js
 - SQLite
