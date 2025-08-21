@@ -11,7 +11,8 @@
     </div>
     <ul class="message-list">
       <li v-for="msg in messages" :key="msg.id">
-        {{ msg.content }}
+        <img :src="userIcon" alt="user icon" class="user-icon" />
+        <span class="content">{{ msg.content }}</span>
         <span class="date">({{ msg.created_at }})</span>
       </li>
     </ul>
@@ -21,12 +22,14 @@
 <script>
 import { apiURL } from '../config.js'
 import axios from 'axios'
+import userIcon from '../assets/userIcon.svg'
 
 export default {
   name: 'Chat',
   data() {
     return {
       apiURL,
+      userIcon,
       newMessage: '',
       messages: [],
       username: ''
@@ -101,13 +104,23 @@ export default {
   margin: 0;
 }
 .message-list li {
+  display: flex;
+  align-items: center;
   padding: 0.5rem 0;
   border-bottom: 1px solid #333;
+}
+.message-list li .content {
+  flex: 1;
 }
 .message-list li .date {
   color: #aaa;
   font-size: 0.8rem;
   margin-left: 0.5rem;
+}
+.user-icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 0.5rem;
 }
 </style>
 
