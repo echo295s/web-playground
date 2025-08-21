@@ -14,13 +14,21 @@
 #### 要件
 ChatGPTとGitHubを連携する。
 
+【フロントエンド】
 - Vue.js
+- Vuetify
+- Axios
+
+【バックエンド】
 - Node.js
-- SQLite
 - Express.js
+
+【認証・セキュリティ】
 - bcrypt
 - JSON Web Token
-- Axios
+
+【データベース】
+- SQLite
 
 学習用のためセキュリティ上、本来は含めるべきでないファイル、情報が含まれている。
 
