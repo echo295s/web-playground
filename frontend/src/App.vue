@@ -1,11 +1,13 @@
 <template>
   <v-app>
+    <v-app-bar density="comfortable" elevate-on-scroll>
+      <v-app-bar-title>Web Playground</v-app-bar-title>
+      <v-spacer />
+      <v-btn v-if="isLoggedIn" color="primary" variant="text" @click="logout">ログアウト</v-btn>
+    </v-app-bar>
     <v-main>
       <v-container>
-        <div v-if="isLoggedIn">
-          <v-btn color="primary" @click="logout">ログアウト</v-btn>
-          <Chat />
-        </div>
+        <Chat v-if="isLoggedIn" />
         <Login
           v-else-if="!isRegisterMode"
           @login-success="handleLoginSuccess"
