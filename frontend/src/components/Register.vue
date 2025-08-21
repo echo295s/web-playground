@@ -55,6 +55,9 @@ export default {
   width: 100%;
   margin-bottom: 0.5rem;
   padding: 0.5rem;
+  background-color: #2c2c2c;
+  border: 1px solid #555;
+  color: #e0e0e0;
 }
 .register-container button {
   padding: 0.5rem 1rem;
@@ -69,7 +72,7 @@ export default {
   cursor: pointer;
 }
 .message {
-  color: #333;
+  color: #ccc;
   margin-top: 1rem;
 }
 .error {

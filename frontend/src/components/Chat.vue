@@ -66,8 +66,8 @@ export default {
   max-width: 600px;
   margin: 2rem auto;
   padding: 1rem;
-  background-color: #f9f9f9;
-  border: 1px solid #ddd;
+  background-color: #1e1e1e;
+  border: 1px solid #333;
   border-radius: 8px;
 }
 .message-input {
@@ -78,8 +78,10 @@ export default {
 .message-input input {
   flex: 1;
   padding: 0.5rem;
-  border: 1px solid #ccc;
+  background-color: #2c2c2c;
+  border: 1px solid #555;
   border-radius: 4px;
+  color: #e0e0e0;
 }
 .message-input button {
   padding: 0.5rem 1rem;
@@ -99,10 +101,10 @@ export default {
 }
 .message-list li {
   padding: 0.5rem 0;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid #333;
 }
 .message-list li .date {
-  color: #888;
+  color: #aaa;
   font-size: 0.8rem;
   margin-left: 0.5rem;
 }
