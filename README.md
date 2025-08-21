@@ -32,6 +32,13 @@ ChatGPTとGitHubを連携する。
 
 学習用のためセキュリティ上、本来は含めるべきでないファイル、情報が含まれている。
 
+#### 環境変数
+バックエンドでは JWT の検証に `JWT_SECRET` を使用します。`.env` などで以下のように設定してください。
+
+```
+JWT_SECRET=your_secret_key
+```
+
 #### テストアカウント
 - testUser1:password
 - testUser2:1234
