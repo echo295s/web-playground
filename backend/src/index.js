@@ -15,5 +15,5 @@ app.use('/api', messageRoutes);
 app.use('/api/auth', authRoutes);
 
 app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}`)
+  console.log(`サーバーが起動しました。: http://localhost:${port}`)
 });
