@@ -1,16 +1,20 @@
 <template>
-  <div>
-    <div v-if="isLoggedIn">
-      <button @click="logout">ログアウト</button>
-      <Chat />
-    </div>
-    <Login
-      v-else-if="!isRegisterMode"
-      @login-success="handleLoginSuccess"
-      @go-register="handleGoRegister"
-    />
-    <Register v-else @go-login="handleGoLogin" />
-  </div>
+  <v-app>
+    <v-main>
+      <v-container>
+        <div v-if="isLoggedIn">
+          <v-btn color="primary" @click="logout">ログアウト</v-btn>
+          <Chat />
+        </div>
+        <Login
+          v-else-if="!isRegisterMode"
+          @login-success="handleLoginSuccess"
+          @go-register="handleGoRegister"
+        />
+        <Register v-else @go-login="handleGoLogin" />
+      </v-container>
+    </v-main>
+  </v-app>
 </template>
 
 <script>
