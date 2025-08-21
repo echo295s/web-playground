@@ -1,22 +1,34 @@
 <template>
-  <div class="chat-container">
-    <h2>ようこそ「{{ username }}」さん</h2>
-    <div class="message-input">
-      <input
-        name="newMessage"
-        v-model="newMessage"
-        placeholder="メッセージを入力"
-      />
-      <button @click="sendMessage">送信</button>
-    </div>
-    <ul class="message-list">
-      <li v-for="msg in messages" :key="msg.id">
-        <img :src="userIcon" alt="user icon" class="user-icon" />
-        <span class="content">{{ msg.content }}</span>
-        <span class="date">({{ msg.created_at }})</span>
-      </li>
-    </ul>
-  </div>
+  <v-card class="mx-auto my-8" max-width="600">
+    <v-card-title>ようこそ「{{ username }}」さん</v-card-title>
+    <v-card-text>
+      <div class="d-flex gap-2 mb-4">
+        <v-text-field
+          name="newMessage"
+          v-model="newMessage"
+          placeholder="メッセージを入力"
+          hide-details
+          density="comfortable"
+          class="flex-grow-1"
+        />
+        <v-btn @click="sendMessage">送信</v-btn>
+      </div>
+      <v-list>
+        <v-list-item
+          v-for="msg in messages"
+          :key="msg.id"
+        >
+          <template #prepend>
+            <v-avatar size="24">
+              <img :src="userIcon" alt="user icon" />
+            </v-avatar>
+          </template>
+          <v-list-item-title>{{ msg.content }}</v-list-item-title>
+          <v-list-item-subtitle>({{ msg.created_at }})</v-list-item-subtitle>
+        </v-list-item>
+      </v-list>
+    </v-card-text>
+  </v-card>
 </template>
 
 <script>
@@ -63,62 +75,5 @@ export default {
 }
 </script>
 
-<style scoped>
-.chat-container {
-  max-width: 600px;
-  margin: 2rem auto;
-  padding: 1rem;
-  background-color: #1e1e1e;
-  border: 1px solid #333;
-  border-radius: 8px;
-}
-.message-input {
-  display: flex;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
-}
-.message-input input {
-  flex: 1;
-  padding: 0.5rem;
-  background-color: #2c2c2c;
-  border: 1px solid #555;
-  border-radius: 4px;
-  color: #e0e0e0;
-}
-.message-input button {
-  padding: 0.5rem 1rem;
-  background-color: #42b983;
-  border: none;
-  color: #fff;
-  border-radius: 4px;
-  cursor: pointer;
-}
-.message-input button:hover {
-  background-color: #369870;
-}
-.message-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-.message-list li {
-  display: flex;
-  align-items: center;
-  padding: 0.5rem 0;
-  border-bottom: 1px solid #333;
-}
-.message-list li .content {
-  flex: 1;
-}
-.message-list li .date {
-  color: #aaa;
-  font-size: 0.8rem;
-  margin-left: 0.5rem;
-}
-.user-icon {
-  width: 24px;
-  height: 24px;
-  margin-right: 0.5rem;
-}
-</style>
+
 
