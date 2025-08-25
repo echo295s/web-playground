@@ -1,2 +1,3 @@
 # SQLite DBファイル
 data.db
+.env
