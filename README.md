@@ -45,8 +45,7 @@ ChatGPTとGitHubを連携する。
 【データベース】
 - SQLite
 
-`npm run start:all` で起動したあとプロセスが残ることがある。
-
+`npm run start:all` で起動したあとプロセスが残ることがある。  
 プロセスが残るとAPIが更新されない。
 
 #### テストアカウント
