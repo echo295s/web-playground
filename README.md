@@ -4,6 +4,19 @@
 #### リポジトリ
 `https://github.com/echo295s/web-playground.git`
 
+#### セットアップ
+1. 依存関係をインストールする。
+   ```sh
+   npm i
+   cd backend && npm i && cd ..
+   cd frontend && npm i && cd ..
+   ```
+2. 環境変数ファイルを作成する。
+   ```sh
+   cp backend/.env.example backend/.env
+   ```
+   `backend/.env` の `JWT_SECRET` を任意の値に書き換える。
+
 #### 起動コマンド
 `npm run start:all`
 
@@ -35,11 +48,7 @@ ChatGPTとGitHubを連携する。
 プロセスが残るとAPIが更新されない。
 
 #### 環境変数
-バックエンドでは JWT の検証に `JWT_SECRET` を使用します。`.env` などで以下のように設定してください。
-
-```
-JWT_SECRET=your_secret_key
-```
+バックエンドでは JWT の検証に `JWT_SECRET` を使用します。`backend/.env.example` を `backend/.env` にコピーし、任意の秘密鍵を設定してください。
 
 #### テストアカウント
 - testUser1:password
