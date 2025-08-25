@@ -3,10 +3,7 @@
     <v-card-title>ようこそ「{{ username }}」さん</v-card-title>
     <v-card-text>
       <v-list class="message-list mt-2" ref="messageList">
-        <v-list-item
-          v-for="msg in messages"
-          :key="msg.id"
-        >
+        <v-list-item v-for="msg in messages" :key="msg.id">
           <template #prepend>
             <v-avatar size="24" class="user-icon">
               <img :src="userIcon" alt="user icon" />
