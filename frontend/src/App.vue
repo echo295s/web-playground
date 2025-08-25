@@ -3,7 +3,7 @@
     <v-app-bar density="comfortable" elevate-on-scroll>
       <v-app-bar-title>Web Playground</v-app-bar-title>
       <v-spacer />
-      <v-btn v-if="isLoggedIn" color="primary" variant="text" @click="logout">ログアウト</v-btn>
+      <v-btn v-if="isLoggedIn" variant="text" @click="logout">ログアウト</v-btn>
     </v-app-bar>
     <v-main>
       <v-container>

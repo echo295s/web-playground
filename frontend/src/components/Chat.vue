@@ -2,16 +2,17 @@
   <v-card class="mx-auto my-8" max-width="600">
     <v-card-title>ようこそ「{{ username }}」さん</v-card-title>
     <v-card-text>
-      <div class="d-flex gap-2 mb-4">
+      <div class="d-flex gap-2 mb-1">
         <v-text-field
           name="newMessage"
           v-model="newMessage"
           placeholder="メッセージを入力"
+          autocomplete="off"
           hide-details
-          density="comfortable"
-          class="flex-grow-1"
+          density="compact"
+          class="flex-grow-1 pr-2"
         />
-        <v-btn @click="sendMessage">送信</v-btn>
+        <v-btn color="primary" @click="sendMessage">送信</v-btn>
       </div>
       <v-list>
         <v-list-item
@@ -19,7 +20,7 @@
           :key="msg.id"
         >
           <template #prepend>
-            <v-avatar size="24">
+            <v-avatar size="24" :style="{ 'background-color': 'gray' }">
               <img :src="userIcon" alt="user icon" />
             </v-avatar>
           </template>

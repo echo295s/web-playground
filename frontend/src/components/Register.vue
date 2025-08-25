@@ -3,15 +3,34 @@
     <v-card-title>ユーザー登録</v-card-title>
     <v-card-text>
       <v-form @submit.prevent="register">
-        <v-text-field v-model="username" label="ユーザー名" />
-        <v-text-field v-model="password" label="パスワード" type="password" />
-        <v-btn type="submit" color="primary" class="mt-4">登録</v-btn>
+        <v-text-field
+          class="mb-6"
+          v-model="username"
+          placeholder="ユーザー名"
+          density="compact"
+          hide-details
+          autocomplete="username"
+        />
+        <v-text-field
+          class="mb-6"
+          v-model="password"
+          placeholder="パスワード"
+          density="compact"
+          hide-details
+          type="password"
+          autocomplete="new-password"
+        />
+        <div class="d-flex justify-space-between">
+          <v-btn variant="text" color="primary" @click="$emit('go-login')">
+            ログインへ戻る
+          </v-btn>
+          <v-btn type="submit" color="primary">
+            登録
+          </v-btn>
+        </div>
       </v-form>
       <v-alert v-if="message" type="success" class="mt-4">{{ message }}</v-alert>
       <v-alert v-if="error" type="error" class="mt-4">{{ error }}</v-alert>
-      <v-btn variant="text" class="mt-2" @click="$emit('go-login')">
-        ログインへ戻る
-      </v-btn>
     </v-card-text>
   </v-card>
 </template>
@@ -47,5 +66,3 @@ export default {
   }
 }
 </script>
-
-
