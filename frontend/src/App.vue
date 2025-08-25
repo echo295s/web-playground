@@ -36,6 +36,12 @@ export default {
       isRegisterMode: false,
     }
   },
+  mounted() {
+    window.addEventListener('logout', this.logout)
+  },
+  beforeUnmount() {
+    window.removeEventListener('logout', this.logout)
+  },
   methods: {
     handleLoginSuccess() {
       this.isLoggedIn = true;
