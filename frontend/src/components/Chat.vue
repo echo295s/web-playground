@@ -20,7 +20,7 @@
           :key="msg.id"
         >
           <template #prepend>
-            <v-avatar size="24" :style="{ 'background-color': 'gray' }">
+            <v-avatar size="24" class="user-icon">
               <img :src="userIcon" alt="user icon" />
             </v-avatar>
           </template>
@@ -76,5 +76,8 @@ export default {
 }
 </script>
 
-
-
+<style scoped>
+.user-icon {
+  background-color: gray;
+}
+</style>

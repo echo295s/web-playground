@@ -29,6 +29,8 @@ ChatGPTとGitHubを連携する。
 
 【フロントエンド】
 - Vue.js
+- Vuex
+- Vue Router
 - Vuetify
 - Axios
 
@@ -43,12 +45,9 @@ ChatGPTとGitHubを連携する。
 【データベース】
 - SQLite
 
-学習用のためセキュリティ上、本来は含めるべきでないファイル、情報が含まれている。
 `npm run start:all` で起動したあとプロセスが残ることがある。
-プロセスが残るとAPIが更新されない。
 
-#### 環境変数
-バックエンドでは JWT の検証に `JWT_SECRET` を使用します。`backend/.env.example` を `backend/.env` にコピーし、任意の秘密鍵を設定してください。
+プロセスが残るとAPIが更新されない。
 
 #### テストアカウント
 - testUser1:password
