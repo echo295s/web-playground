@@ -14,7 +14,7 @@
         />
         <v-btn color="primary" @click="sendMessage">送信</v-btn>
       </div>
-      <v-list>
+      <v-list class="message-list" ref="messageList">
         <v-list-item
           v-for="msg in messages"
           :key="msg.id"
@@ -60,6 +60,7 @@ export default {
         });
         this.newMessage = '';
         await this.fetchMessages();
+        this.scrollToBottom();
       } catch (error) {
         console.error('送信失敗', error);
       }
@@ -68,9 +69,19 @@ export default {
       try {
         const res = await api.get('/messages');
         this.messages = res.data.messages;
+        this.scrollToBottom();
       } catch (error) {
         console.error('取得失敗', error);
       }
+    },
+    scrollToBottom() {
+      this.$nextTick(() => {
+        const list = this.$refs.messageList;
+        const el = list && list.$el ? list.$el : list;
+        if (el) {
+          el.scrollTop = el.scrollHeight;
+        }
+      });
     }
   }
 }
@@ -79,5 +90,9 @@ export default {
 <style scoped>
 .user-icon {
   background-color: gray;
+}
+.message-list {
+  max-height: 300px;
+  overflow-y: auto;
 }
 </style>
