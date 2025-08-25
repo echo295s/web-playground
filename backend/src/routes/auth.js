@@ -44,7 +44,7 @@ router.post('/login', (req, res) => {
       if (!result) return res.status(401).json({ error: 'パスワードが違います' });
 
       const token = jwt.sign({ id: user.id, username: user.username }, process.env.JWT_SECRET, {
-        expiresIn: '1h'
+        expiresIn: '5m'
       });
       res.json({ token });
     });
