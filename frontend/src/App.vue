@@ -10,10 +10,10 @@
         <Chat v-if="isLoggedIn" />
         <Login
           v-else-if="!isRegisterMode"
-          @login-success="handleLoginSuccess"
-          @go-register="handleGoRegister"
+          @login-success="this.setLoggedIn(true)"
+          @go-register="this.setRegisterMode(true)"
         />
-        <Register v-else @go-login="handleGoLogin" />
+        <Register v-else @go-login="this.setRegisterMode(false)" />
       </v-container>
     </v-main>
   </v-app>
@@ -25,39 +25,29 @@ import Login from './components/Login.vue'
 import Register from './components/Register.vue'
 import { mapState, mapMutations } from 'vuex'
 
-  export default {
-      components: {
-        Chat,
-        Login,
-        Register,
-      },
-      computed: {
-        ...mapState(['isLoggedIn', 'isRegisterMode']),
-      },
-      mounted() {
-        window.addEventListener('logout', this.logout)
-      },
-      beforeUnmount() {
-        window.removeEventListener('logout', this.logout)
-      },
-      methods: {
-        ...mapMutations(['setLoggedIn', 'setRegisterMode']),
-        handleLoginSuccess() {
-          this.setLoggedIn(true)
-        },
-        handleGoRegister() {
-          this.setRegisterMode(true)
-        },
-        handleGoLogin() {
-          this.setRegisterMode(false)
-        },
-        logout() {
-          localStorage.removeItem('token')
-          localStorage.removeItem('username')
-          this.setLoggedIn(false)
-          this.setRegisterMode(false)
-        },
-      },
-    }
+export default {
+  components: {
+    Chat,
+    Login,
+    Register,
+  },
+  computed: {
+    ...mapState(['isLoggedIn', 'isRegisterMode']),
+  },
+  mounted() {
+    window.addEventListener('logout', this.logout);
+  },
+  beforeUnmount() {
+    window.removeEventListener('logout', this.logout);
+  },
+  methods: {
+    ...mapMutations(['setLoggedIn', 'setRegisterMode']),
+    logout() {
+      localStorage.removeItem('token');
+      localStorage.removeItem('username');
+      this.setLoggedIn(false);
+      this.setRegisterMode(false);
+    },
+  },
+}
 </script>
-
