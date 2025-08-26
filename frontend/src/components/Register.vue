@@ -21,7 +21,7 @@
           autocomplete="new-password"
         />
         <div class="d-flex justify-space-between">
-          <v-btn variant="text" color="primary" @click="$emit('go-login')">
+          <v-btn variant="text" color="primary" @click="goLogin">
             ログインへ戻る
           </v-btn>
           <v-btn type="submit" color="primary">
@@ -62,6 +62,9 @@ export default {
       } catch (err) {
         this.error = err.response?.data?.error || '登録に失敗しました';
       }
+    },
+    goLogin() {
+      this.$router.push('/')
     }
   }
 }

@@ -21,7 +21,7 @@
           autocomplete="current-password"
         />
         <div class="d-flex justify-space-between">
-          <v-btn variant="text" color="primary" @click="$emit('go-register')">
+          <v-btn variant="text" color="primary" @click="goRegister">
             新規登録
           </v-btn>
           <v-btn type="submit" color="primary">
@@ -57,10 +57,14 @@ export default {
         })
         localStorage.setItem('token', res.data.token)
         localStorage.setItem('username', this.username)
-        this.$emit('login-success')
+        this.$store.commit('setLoggedIn', true)
+        this.$router.push('/chat')
       } catch (err) {
         this.error = err.response?.data?.error || 'ログインに失敗しました'
       }
+    },
+    goRegister() {
+      this.$router.push('/register')
     }
   }
 }
