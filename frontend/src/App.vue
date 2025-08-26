@@ -32,7 +32,7 @@ export default {
       localStorage.removeItem('token');
       localStorage.removeItem('username');
       this.setLoggedIn(false);
-      this.$router.push('/');
+      this.$router.push('/login');
     },
   },
 }
