@@ -7,32 +7,18 @@
     </v-app-bar>
     <v-main>
       <v-container>
-        <Chat v-if="isLoggedIn" />
-        <Login
-          v-else-if="!isRegisterMode"
-          @login-success="this.setLoggedIn(true)"
-          @go-register="this.setRegisterMode(true)"
-        />
-        <Register v-else @go-login="this.setRegisterMode(false)" />
+        <router-view />
       </v-container>
     </v-main>
   </v-app>
 </template>
 
 <script>
-import Chat from './components/Chat.vue'
-import Login from './components/Login.vue'
-import Register from './components/Register.vue'
 import { mapState, mapMutations } from 'vuex'
 
 export default {
-  components: {
-    Chat,
-    Login,
-    Register,
-  },
   computed: {
-    ...mapState(['isLoggedIn', 'isRegisterMode']),
+    ...mapState(['isLoggedIn']),
   },
   mounted() {
     window.addEventListener('logout', this.logout);
@@ -41,12 +27,12 @@ export default {
     window.removeEventListener('logout', this.logout);
   },
   methods: {
-    ...mapMutations(['setLoggedIn', 'setRegisterMode']),
+    ...mapMutations(['setLoggedIn']),
     logout() {
       localStorage.removeItem('token');
       localStorage.removeItem('username');
       this.setLoggedIn(false);
-      this.setRegisterMode(false);
+      this.$router.push('/');
     },
   },
 }
