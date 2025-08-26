@@ -24,41 +24,43 @@ import Chat from './components/Chat.vue'
 import Login from './components/Login.vue'
 import Register from './components/Register.vue'
 
-export default {
-  components: {
-    Chat,
-    Login,
-    Register,
-  },
-  data() {
-    return {
-      isLoggedIn: !!localStorage.getItem('token'),
-      isRegisterMode: false,
+  export default {
+      components: {
+        Chat,
+        Login,
+        Register,
+      },
+      computed: {
+        isLoggedIn() {
+          return this.$store.state.isLoggedIn
+        },
+        isRegisterMode() {
+          return this.$store.state.isRegisterMode
+        },
+      },
+      mounted() {
+        window.addEventListener('logout', this.logout)
+      },
+      beforeUnmount() {
+        window.removeEventListener('logout', this.logout)
+      },
+      methods: {
+        handleLoginSuccess() {
+          this.$store.commit('setLoggedIn', true);
+        },
+        handleGoRegister() {
+          this.$store.commit('setRegisterMode', true);
+        },
+        handleGoLogin() {
+          this.$store.commit('setRegisterMode', false);
+        },
+        logout() {
+          localStorage.removeItem('token');
+          localStorage.removeItem('username');
+          this.$store.commit('setLoggedIn', false);
+          this.$store.commit('setRegisterMode', false);
+        },
+      },
     }
-  },
-  mounted() {
-    window.addEventListener('logout', this.logout)
-  },
-  beforeUnmount() {
-    window.removeEventListener('logout', this.logout)
-  },
-  methods: {
-    handleLoginSuccess() {
-      this.isLoggedIn = true;
-    },
-    handleGoRegister() {
-      this.isRegisterMode = true;
-    },
-    handleGoLogin() {
-      this.isRegisterMode = false;
-    },
-    logout() {
-      localStorage.removeItem('token');
-      localStorage.removeItem('username');
-      this.isLoggedIn = false;
-      this.isRegisterMode = false;
-    },
-  },
-}
 </script>
 
