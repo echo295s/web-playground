@@ -23,6 +23,7 @@
 import Chat from './components/Chat.vue'
 import Login from './components/Login.vue'
 import Register from './components/Register.vue'
+import { mapState, mapMutations } from 'vuex'
 
   export default {
       components: {
@@ -31,12 +32,7 @@ import Register from './components/Register.vue'
         Register,
       },
       computed: {
-        isLoggedIn() {
-          return this.$store.state.isLoggedIn
-        },
-        isRegisterMode() {
-          return this.$store.state.isRegisterMode
-        },
+        ...mapState(['isLoggedIn', 'isRegisterMode']),
       },
       mounted() {
         window.addEventListener('logout', this.logout)
@@ -45,20 +41,21 @@ import Register from './components/Register.vue'
         window.removeEventListener('logout', this.logout)
       },
       methods: {
+        ...mapMutations(['setLoggedIn', 'setRegisterMode']),
         handleLoginSuccess() {
-          this.$store.commit('setLoggedIn', true);
+          this.setLoggedIn(true)
         },
         handleGoRegister() {
-          this.$store.commit('setRegisterMode', true);
+          this.setRegisterMode(true)
         },
         handleGoLogin() {
-          this.$store.commit('setRegisterMode', false);
+          this.setRegisterMode(false)
         },
         logout() {
-          localStorage.removeItem('token');
-          localStorage.removeItem('username');
-          this.$store.commit('setLoggedIn', false);
-          this.$store.commit('setRegisterMode', false);
+          localStorage.removeItem('token')
+          localStorage.removeItem('username')
+          this.setLoggedIn(false)
+          this.setRegisterMode(false)
         },
       },
     }
