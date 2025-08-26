@@ -8,10 +8,10 @@ export default createStore({
   },
   mutations: {
     login(state) {
-      state.isLoggedIn = true
+      state.isLoggedIn = true;
     },
     logout(state) {
-      state.isLoggedIn = false
+      state.isLoggedIn = false;
     },
   },
 })
