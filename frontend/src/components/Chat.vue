@@ -1,6 +1,6 @@
 <template>
   <v-card class="mx-auto my-8" max-width="600">
-    <v-card-title>ようこそ「{{ username }}」さん</v-card-title>
+    <v-card-title>{{ chatName || '名も無きスレッド' }}</v-card-title>
     <v-card-text>
       <v-list class="message-list mt-2" ref="messageList">
         <v-list-item v-for="msg in messages" :key="msg.id">
@@ -40,11 +40,11 @@ export default {
       userIcon,
       newMessage: '',
       messages: [],
-      username: ''
+      chatName: ''
     }
   },
   mounted() {
-    this.username = localStorage.getItem('username') || '';
+    this.chatName = '';
     this.fetchMessages();
   },
   methods: {
