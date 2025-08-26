@@ -3,7 +3,7 @@
     <v-app-bar density="comfortable" elevate-on-scroll>
       <v-app-bar-title>Web Playground</v-app-bar-title>
       <v-spacer />
-      <v-btn v-if="isLoggedIn" variant="text" @click="logout">ログアウト</v-btn>
+      <v-btn v-if="isLoggedIn" variant="text" @click="handleLogout">ログアウト</v-btn>
     </v-app-bar>
     <v-main>
       <v-container>
@@ -21,18 +21,18 @@ export default {
     ...mapState(['isLoggedIn']),
   },
   mounted() {
-    window.addEventListener('logout', this.logout);
+    window.addEventListener('logout', this.handleLogout);
   },
   beforeUnmount() {
-    window.removeEventListener('logout', this.logout);
+    window.removeEventListener('logout', this.handleLogout);
   },
   methods: {
-    ...mapMutations(['setLoggedIn']),
-    logout() {
+    ...mapMutations(['logout']),
+    handleLogout() {
       localStorage.removeItem('token');
       localStorage.removeItem('username');
-      this.setLoggedIn(false);
-      this.$router.push('/');
+      this.logout();
+      this.$router.push('/login');
     },
   },
 }
