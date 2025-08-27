@@ -39,6 +39,29 @@ db.serialize(() => {
       console.log('users テーブルが準備できました。')
     }
   })
+
+  db.run(`
+    CREATE TABLE IF NOT EXISTS wellbeing_entries (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      user_id INTEGER NOT NULL,
+      date TEXT NOT NULL,
+      sleep_before_midnight INTEGER,
+      sleep_quality INTEGER,
+      morning_sunlight INTEGER,
+      active_exercise INTEGER,
+      conversation INTEGER,
+      alcohol INTEGER,
+      main_focus TEXT,
+      mood INTEGER,
+      created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    )
+  `, (err) => {
+    if (err) {
+      console.error('テーブル作成エラー:', err.message)
+    } else {
+      console.log('wellbeing_entries テーブルが準備できました。')
+    }
+  })
 })
 
 module.exports = db
