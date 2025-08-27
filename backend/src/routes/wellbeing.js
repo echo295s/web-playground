@@ -46,11 +46,15 @@ router.post('/wellbeing', authMiddleware, (req, res, next) => {
   stmt.finalize();
 });
 
-// Get summary for last week
+// Get summary for last week and heatmap for all entries
 router.get('/wellbeing/summary', authMiddleware, (req, res, next) => {
   const userId = req.user.id;
-  const query = `SELECT * FROM wellbeing_entries WHERE user_id = ? AND date >= date('now', '-6 day') ORDER BY date ASC`;
-  db.all(query, [userId], (err, rows) => {
+  const lastWeekQuery =
+    "SELECT * FROM wellbeing_entries WHERE user_id = ? AND date >= date('now', '-6 day') ORDER BY date ASC";
+  const allQuery =
+    'SELECT * FROM wellbeing_entries WHERE user_id = ? ORDER BY date ASC';
+
+  db.all(lastWeekQuery, [userId], (err, rows) => {
     if (err) {
       err.status = 500;
       return next(err);
@@ -82,7 +86,26 @@ router.get('/wellbeing/summary', authMiddleware, (req, res, next) => {
       ratios[key] = counts[key] / days;
     });
 
-    res.json({ entries: rows, ratios });
+    db.all(allQuery, [userId], (err2, allRows) => {
+      if (err2) {
+        err2.status = 500;
+        return next(err2);
+      }
+
+      const heatmap = allRows.map((r) => ({
+        date: r.date,
+        score:
+          r.sleep_before_midnight +
+          r.sleep_quality +
+          r.morning_sunlight +
+          r.active_exercise +
+          r.conversation +
+          r.alcohol +
+          r.mood,
+      }));
+
+      res.json({ entries: rows, ratios, heatmap });
+    });
   });
 });
 

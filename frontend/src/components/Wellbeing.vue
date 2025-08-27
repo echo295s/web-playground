@@ -33,14 +33,17 @@
       </v-table>
 
       <h3 class="mt-8">ヒートマップ</h3>
-      <table class="heatmap">
-        <tbody>
-          <tr v-for="item in heatmapItems" :key="item.key">
-            <th>{{ item.label }}</th>
-            <td v-for="e in summary.entries" :key="e.id + item.key" :style="{backgroundColor: valueColor(e[item.key])}"></td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="heatmap-year">
+        <div class="week" v-for="(week, w) in heatmapWeeks" :key="w">
+          <div
+            v-for="day in week"
+            :key="day.date"
+            class="day"
+            :title="day.date + ':' + day.score"
+            :style="{ backgroundColor: scoreColor(day.score) }"
+          ></div>
+        </div>
+      </div>
 
       <h3 class="mt-8">過去一週間の達成割合</h3>
       <ul>
@@ -69,7 +72,7 @@ export default {
         mainFocus: '仕事',
         mood: 0,
       },
-      summary: { entries: [], ratios: {} },
+      summary: { entries: [], ratios: {}, heatmap: [] },
       sleepQualityOptions: [
         { title: '0', value: 0 },
         { title: '1', value: 1 },
@@ -92,16 +95,26 @@ export default {
         this.form.alcohol = val ? -1 : 0;
       },
     },
-    heatmapItems() {
-      return [
-        { key: 'sleep_before_midnight', label: '0時までに寝たか' },
-        { key: 'sleep_quality', label: '睡眠の質' },
-        { key: 'morning_sunlight', label: '朝日（九時まで）を浴びたか' },
-        { key: 'active_exercise', label: '10分間の能動的運動' },
-        { key: 'conversation', label: '誰かとの会話' },
-        { key: 'alcohol', label: 'アルコール' },
-        { key: 'mood', label: '気分' },
-      ];
+    heatmapWeeks() {
+      const today = new Date();
+      const start = new Date();
+      start.setDate(today.getDate() - 7 * 52 + 1);
+      const map = {};
+      (this.summary.heatmap || []).forEach((h) => {
+        map[h.date] = h.score;
+      });
+      const weeks = [];
+      for (let w = 0; w < 52; w++) {
+        const days = [];
+        for (let d = 0; d < 7; d++) {
+          const current = new Date(start);
+          current.setDate(start.getDate() + w * 7 + d);
+          const dateStr = current.toISOString().split('T')[0];
+          days.push({ date: dateStr, score: map[dateStr] || 0 });
+        }
+        weeks.push(days);
+      }
+      return weeks;
     },
   },
   methods: {
@@ -121,10 +134,12 @@ export default {
         console.error(err);
       }
     },
-    valueColor(value) {
-      if (value <= 0) return '#e0e0e0';
-      if (value === 1) return '#a5d6a7';
-      return '#2e7d32';
+    scoreColor(score) {
+      if (score <= 0) return '#e0e0e0';
+      if (score <= 2) return '#c8e6c9';
+      if (score <= 4) return '#81c784';
+      if (score <= 6) return '#4caf50';
+      return '#1b5e20';
     },
     itemLabel(key) {
       const map = {
@@ -146,14 +161,16 @@ export default {
 </script>
 
 <style scoped>
-.heatmap {
-  border-collapse: collapse;
+.heatmap-year {
+  display: flex;
 }
-.heatmap th,
-.heatmap td {
-  border: 1px solid #ccc;
-  width: 24px;
-  height: 24px;
-  text-align: center;
+.week {
+  display: flex;
+  flex-direction: column;
+}
+.day {
+  width: 12px;
+  height: 12px;
+  margin: 1px;
 }
 </style>
