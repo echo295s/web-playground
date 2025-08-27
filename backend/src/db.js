@@ -39,6 +39,28 @@ db.serialize(() => {
       console.log('users テーブルが準備できました。')
     }
   })
+
+  db.run(`
+    CREATE TABLE IF NOT EXISTS routines (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      date TEXT UNIQUE,
+      sleep_before_midnight INTEGER,
+      sleep_quality INTEGER,
+      sunlight_before_nine INTEGER,
+      active_exercise INTEGER,
+      conversation INTEGER,
+      alcohol INTEGER,
+      main_focus TEXT,
+      mood INTEGER,
+      created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    )
+  `, (err) => {
+    if (err) {
+      console.error('テーブル作成エラー:', err.message)
+    } else {
+      console.log('routines テーブルが準備できました。')
+    }
+  })
 })
 
 module.exports = db
