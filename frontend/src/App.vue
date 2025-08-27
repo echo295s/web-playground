@@ -3,6 +3,7 @@
     <v-app-bar density="comfortable" elevate-on-scroll>
       <v-app-bar-title>Web Playground</v-app-bar-title>
       <v-spacer />
+      <v-btn v-if="isLoggedIn" to="/routine" variant="text">ルーティン</v-btn>
       <v-btn v-if="isLoggedIn" variant="text" @click="handleLogout">ログアウト</v-btn>
     </v-app-bar>
     <v-main>
