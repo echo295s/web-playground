@@ -4,7 +4,7 @@
   "description": "開発ディレクトリ\r `C:\\dev\\MyNodeSandbox`",
   "main": "index.js",
   "scripts": {
-    "start:frontend": "cd frontend && npm run dev",
+    "start:frontend": "cd frontend && npm run serve",
     "start:backend": "cd backend && npm start",
     "start:all": "concurrently \"npm run start:backend\" \"npm run start:frontend\""
   },
