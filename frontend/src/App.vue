@@ -1,7 +1,9 @@
 <template>
   <v-app>
     <v-app-bar density="comfortable" elevate-on-scroll>
-      <v-app-bar-title class="cursor-pointer" @click="goApps">Web Playground</v-app-bar-title>
+      <v-app-bar-title class="web-playground-title">
+        <span class="cursor-pointer" @click="goApps">Web Playground</span>
+      </v-app-bar-title>
       <v-spacer />
       <v-btn
         v-if="isLoggedIn"
@@ -49,3 +51,9 @@ export default {
   },
 }
 </script>
+
+<style>
+.web-playground-title {
+  flex: none;
+}
+</style>
