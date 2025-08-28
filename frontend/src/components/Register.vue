@@ -53,6 +53,10 @@ export default {
     async register() {
       this.error = '';
       this.message = '';
+      if (!this.username || !this.password) {
+        this.error = 'ユーザー名とパスワードを入力してください';
+        return;
+      }
       try {
         await axios.post(`${apiURL}/auth/register`, {
           username: this.username,
