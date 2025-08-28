@@ -7,6 +7,7 @@ import AppSelection from '../components/AppSelection.vue';
 import DummyApp1 from '../components/DummyApp1.vue';
 import DummyApp2 from '../components/DummyApp2.vue';
 import Profile from '../components/Profile.vue';
+import Wellbeing from '../components/Wellbeing.vue';
 
 const routes = [
   { path: '/', redirect: '/login' },
@@ -16,6 +17,7 @@ const routes = [
   { path: '/chat', component: Chat, meta: { requiresAuth: true } },
   { path: '/dummy1', component: DummyApp1, meta: { requiresAuth: true } },
   { path: '/dummy2', component: DummyApp2, meta: { requiresAuth: true } },
+  { path: '/wellbeing', component: Wellbeing, meta: { requiresAuth: true } },
   { path: '/profile', component: Profile, meta: { requiresAuth: true } },
 ];
 
