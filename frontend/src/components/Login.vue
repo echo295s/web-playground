@@ -50,6 +50,10 @@ export default {
   methods: {
     async login() {
       this.error = ''
+      if (!this.username || !this.password) {
+        this.error = 'ユーザー名とパスワードを入力してください'
+        return
+      }
       try {
         const res = await axios.post(`${apiURL}/auth/login`, {
           username: this.username,
