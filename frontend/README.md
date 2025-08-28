@@ -7,9 +7,11 @@ Vue 3 と Vite で構築したシンプルなフロントエンドです。
 ```bash
 npm install
 npm run dev
+# ブラウザを自動で開く場合
+npm run serve
 ```
 
-ブラウザで <http://localhost:5173> を開くとアプリが表示されます。
+ブラウザで <http://localhost:5173> を開くとアプリが表示されます。`npm run serve` を使用するとブラウザが自動で起動します。
 
 ## ビルド
 
