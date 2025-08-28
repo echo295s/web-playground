@@ -61,7 +61,7 @@ export default {
         })
         localStorage.setItem('token', res.data.token)
         localStorage.setItem('username', this.username)
-        this.$store.commit('login')
+        this.$store.commit('login', this.username)
         this.$router.push('/apps')
       } catch (err) {
         this.error = err.response?.data?.error || 'ログインに失敗しました'

@@ -1,8 +1,14 @@
 <template>
   <v-app>
     <v-app-bar density="comfortable" elevate-on-scroll>
-      <v-app-bar-title>Web Playground</v-app-bar-title>
+      <v-app-bar-title class="cursor-pointer" @click="goApps">Web Playground</v-app-bar-title>
       <v-spacer />
+      <v-btn
+        v-if="isLoggedIn"
+        variant="text"
+        class="mr-2"
+        @click="goProfile"
+      >{{ username }}</v-btn>
       <v-btn v-if="isLoggedIn" variant="text" @click="handleLogout">ログアウト</v-btn>
     </v-app-bar>
     <v-main>
@@ -18,7 +24,7 @@ import { mapState, mapMutations } from 'vuex'
 
 export default {
   computed: {
-    ...mapState(['isLoggedIn']),
+    ...mapState(['isLoggedIn', 'username']),
   },
   mounted() {
     window.addEventListener('logout', this.handleLogout);
@@ -28,6 +34,12 @@ export default {
   },
   methods: {
     ...mapMutations(['logout']),
+    goApps() {
+      this.$router.push('/apps');
+    },
+    goProfile() {
+      this.$router.push('/profile');
+    },
     handleLogout() {
       localStorage.removeItem('token');
       localStorage.removeItem('username');
