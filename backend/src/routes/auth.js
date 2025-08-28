@@ -12,6 +12,20 @@ router.post('/register', (req, res) => {
     return res.status(400).json({ error: 'ユーザー名とパスワードは必須です' });
   }
 
+  const usernameRegex = /^[A-Za-z0-9_]{3,20}$/;
+  if (!usernameRegex.test(username)) {
+    return res
+      .status(400)
+      .json({ error: 'ユーザー名は3〜20文字の英数字またはアンダースコアで入力してください' });
+  }
+
+  const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,20}$/;
+  if (!passwordRegex.test(password)) {
+    return res
+      .status(400)
+      .json({ error: 'パスワードは8〜20文字の英数字を含めて入力してください' });
+  }
+
   bcrypt.hash(password, 10, (err, hash) => {
     if (err) return res.status(500).json({ error: 'ハッシュ化エラー' });
 
