@@ -55,5 +55,6 @@ export default {
 <style>
 .web-playground-title {
   flex: none;
+  user-select: none;
 }
 </style>
