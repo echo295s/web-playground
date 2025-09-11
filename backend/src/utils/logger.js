@@ -9,17 +9,24 @@ if (!fs.existsSync(logDir)) {
 let logger;
 try {
   const { createLogger, format, transports } = require('winston');
-  logger = createLogger({
-    format: format.combine(format.timestamp(), format.json()),
-    transports: [
+  const loggerTransports = [
+    new transports.File({
+      filename: path.join(logDir, 'combined.log'),
+      level: 'info',
+    }),
+  ];
+
+  if (process.env.ENABLE_CONSOLE_LOGS !== 'false') {
+    loggerTransports.push(
       new transports.Console({
         level: process.env.LOG_LEVEL || 'http',
-      }),
-      new transports.File({
-        filename: path.join(logDir, 'combined.log'),
-        level: 'info',
-      }),
-    ],
+      })
+    );
+  }
+
+  logger = createLogger({
+    format: format.combine(format.timestamp(), format.json()),
+    transports: loggerTransports,
   });
   logger.stream = {
     write: msg => logger.http(msg.trim()),
