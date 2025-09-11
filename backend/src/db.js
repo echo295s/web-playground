@@ -1,12 +1,13 @@
 const sqlite3 = require('sqlite3').verbose()
 const path = require('path')
+const logger = require('./utils/logger')
 const dbPath = process.env.DB_PATH || path.resolve(__dirname, '../data.db')
 
 const db = new sqlite3.Database(dbPath, (err) => {
   if (err) {
-    console.error('データベース接続エラー:', err.message)
+    logger.error('データベース接続エラー:', err.message)
   } else {
-    console.log('SQLite データベースに接続しました。:', dbPath)
+    logger.info('SQLite データベースに接続しました。:', dbPath)
   }
 })
 
@@ -19,9 +20,9 @@ db.serialize(() => {
     )
   `, (err) => {
     if (err) {
-      console.error('テーブル作成エラー:', err.message)
+      logger.error('テーブル作成エラー:', err.message)
     } else {
-      console.log('messages テーブルが準備できました。')
+      logger.info('messages テーブルが準備できました。')
     }
   })
 
@@ -34,9 +35,9 @@ db.serialize(() => {
     )
   `, (err) => {
     if (err) {
-      console.error('テーブル作成エラー:', err.message)
+      logger.error('テーブル作成エラー:', err.message)
     } else {
-      console.log('users テーブルが準備できました。')
+      logger.info('users テーブルが準備できました。')
     }
   })
 
@@ -58,9 +59,9 @@ db.serialize(() => {
     )
   `, (err) => {
     if (err) {
-      console.error('テーブル作成エラー:', err.message)
+      logger.error('テーブル作成エラー:', err.message)
     } else {
-      console.log('wellbeing_records テーブルが準備できました。')
+      logger.info('wellbeing_records テーブルが準備できました。')
     }
   })
 })
