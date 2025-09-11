@@ -1,6 +1,8 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
+const morgan = require('morgan');
+const logger = require('./utils/logger');
 
 const messageRoutes = require('./routes/messages');
 const authRoutes = require('./routes/auth');
@@ -11,6 +13,7 @@ const port = process.env.PORT || 4000;
 
 app.use(cors());
 app.use(express.json());
+app.use(morgan('combined', { stream: logger.stream }));
 app.use('/api/auth', authRoutes);
 app.use('/api', messageRoutes);
 app.use('/api/wellbeing', wellbeingRoutes);
@@ -22,7 +25,7 @@ app.use((req, res, next) => {
 
 // エラーハンドリングミドルウェア
 app.use((err, req, res, next) => {
-  console.error(err);
+  logger.error(err);
   const status = err.status || 500;
   const message = err.status ? err.message : 'サーバー内部でエラーが発生しました。';
   res.status(status).json({ error: message });
@@ -30,7 +33,7 @@ app.use((err, req, res, next) => {
 
 if (require.main === module) {
   app.listen(port, () => {
-    console.log(`サーバーが起動しました。: http://localhost:${port}`)
+    logger.info(`サーバーが起動しました。: http://localhost:${port}`);
   });
 }
 
