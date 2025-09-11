@@ -1,6 +1,3 @@
-#### 開発ディレクトリ
-`C:\dev\web-playground`
-
 #### リポジトリ
 `https://github.com/echo295s/web-playground.git`
 
@@ -54,7 +51,3 @@ ChatGPTとGitHubを連携する。
 
 `npm run start:all` で起動したあとプロセスが残ることがある。  
 プロセスが残るとAPIが更新されない。
-
-#### テストアカウント
-- testUser1:password
-- testUser2:1234
