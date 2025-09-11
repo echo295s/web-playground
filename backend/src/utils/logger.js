@@ -16,7 +16,7 @@ try {
     }),
   ];
 
-  if (process.env.ENABLE_CONSOLE_LOGS !== 'false') {
+  if (process.env.ENABLE_CONSOLE_LOGS === 'true') {
     loggerTransports.push(
       new transports.Console({
         level: process.env.LOG_LEVEL || 'http',

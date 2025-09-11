@@ -16,6 +16,7 @@
    cp backend/.env.example backend/.env
    ```
    `backend/.env` の `JWT_SECRET` を任意の値に書き換える。
+   ターミナルにもログを出力したい場合は `ENABLE_CONSOLE_LOGS=true` を設定する。
 
 #### 起動コマンド
 `npm run start:all`
