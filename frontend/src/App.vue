@@ -10,7 +10,7 @@
         variant="text"
         class="mr-2"
         @click="goProfile"
-      >{{ username }}</v-btn>
+      >ようこそ「{{ username }}」さん</v-btn>
       <v-btn v-if="isLoggedIn" variant="text" @click="handleLogout">ログアウト</v-btn>
     </v-app-bar>
     <v-main>
