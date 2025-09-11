@@ -1,3 +1,11 @@
+const fs = require('fs');
+const path = require('path');
+
+const logDir = path.join(__dirname, '..', '..', 'logs');
+if (!fs.existsSync(logDir)) {
+  fs.mkdirSync(logDir, { recursive: true });
+}
+
 let logger;
 try {
   const { createLogger, format, transports } = require('winston');
@@ -6,6 +14,10 @@ try {
     transports: [
       new transports.Console({
         level: process.env.LOG_LEVEL || 'http',
+      }),
+      new transports.File({
+        filename: path.join(logDir, 'combined.log'),
+        level: 'info',
       }),
     ],
   });
@@ -23,3 +35,4 @@ try {
 }
 
 module.exports = logger;
+
