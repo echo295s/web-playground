@@ -13,7 +13,7 @@ try {
   const loggerTransports = [
     new transports.File({
       filename: path.join(logDir, 'combined.log'),
-      level: 'info',
+      level: logLevel,
     }),
   ];
 
