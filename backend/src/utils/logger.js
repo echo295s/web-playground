@@ -9,6 +9,7 @@ if (!fs.existsSync(logDir)) {
 let logger;
 try {
   const { createLogger, format, transports } = require('winston');
+  const logLevel = process.env.LOG_LEVEL || 'silly';
   const loggerTransports = [
     new transports.File({
       filename: path.join(logDir, 'combined.log'),
@@ -19,12 +20,13 @@ try {
   if (process.env.ENABLE_CONSOLE_LOGS === 'true') {
     loggerTransports.push(
       new transports.Console({
-        level: process.env.LOG_LEVEL || 'http',
+        level: logLevel,
       })
     );
   }
 
   logger = createLogger({
+    level: logLevel,
     format: format.combine(format.timestamp(), format.json()),
     transports: loggerTransports,
   });
