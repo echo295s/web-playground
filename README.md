@@ -48,6 +48,7 @@ ChatGPTとGitHubを連携する。
 【ツール】
 - Jest
 - Supertest
+- Winston
 
 `npm run start:all` で起動したあとプロセスが残ることがある。  
 プロセスが残るとAPIが更新されない。
