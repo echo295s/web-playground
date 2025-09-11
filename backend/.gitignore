@@ -1,4 +1,5 @@
 # SQLite DBファイル
 data.db
 .env
-coverage/
+coverage
+logs/
