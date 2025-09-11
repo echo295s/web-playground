@@ -28,6 +28,10 @@ app.use((err, req, res, next) => {
   res.status(status).json({ error: message });
 });
 
-app.listen(port, () => {
-  console.log(`サーバーが起動しました。: http://localhost:${port}`)
-});
+if (require.main === module) {
+  app.listen(port, () => {
+    console.log(`サーバーが起動しました。: http://localhost:${port}`)
+  });
+}
+
+module.exports = app;
