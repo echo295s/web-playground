@@ -6,7 +6,8 @@
   "scripts": {
     "start:frontend": "cd frontend && npm run serve",
     "start:backend": "cd backend && npm start",
-    "start:all": "concurrently \"npm run start:backend\" \"npm run start:frontend\""
+    "start:all": "concurrently \"npm run start:backend\" \"npm run start:frontend\"",
+    "test": "npm --prefix backend test"
   },
   "devDependencies": {
     "concurrently": "^7.6.0"
