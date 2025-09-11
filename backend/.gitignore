@@ -1,3 +1,4 @@
 # SQLite DBファイル
 data.db
 .env
+coverage/
