@@ -44,4 +44,3 @@ try {
 }
 
 module.exports = logger;
-
