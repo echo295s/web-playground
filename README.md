@@ -14,6 +14,7 @@
    ```
    `backend/.env` の `JWT_SECRET` を任意の値に書き換える。
    ターミナルにもログを出力したい場合は `ENABLE_CONSOLE_LOGS=true` を設定する。
+   setup.batを実行することで上記のセットアップを自動で行います。
 
 #### 起動コマンド
 `npm run start:all`
@@ -48,6 +49,7 @@ ChatGPTとGitHubを連携する。
 - Supertest
 - Winston
 - Morgan
+- Docker（予定）
 
 `npm run start:all` で起動したあとプロセスが残ることがある。  
 プロセスが残るとAPIが更新されない。
