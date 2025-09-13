@@ -12,8 +12,8 @@
    ```sh
    cp backend/.env.example backend/.env
    ```
-   `backend/.env` の `JWT_SECRET` を任意の値に書き換える。
-   ターミナルにもログを出力したい場合は `ENABLE_CONSOLE_LOGS=true` を設定する。
+   `backend/.env` の `JWT_SECRET` を任意の値に書き換える。  
+   ターミナルにもログを出力したい場合は `ENABLE_CONSOLE_LOGS=true` を設定する。  
    setup.batを実行することで上記のセットアップを自動で行います。
 
 #### 起動コマンド
